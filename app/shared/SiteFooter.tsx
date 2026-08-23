@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { categories } from "../data/archive";
+import { HeritageIcon } from "./HeritageIcon";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div>
-        <h2>The Ramanujan Universe</h2>
+        <h2><HeritageIcon name="lotus" /> The Ramanujan Universe</h2>
         <p>A scholarly archive for Ramanujan&apos;s life, discoveries, notebooks, correspondence and mathematical legacy.</p>
       </div>
       <nav aria-label="Footer navigation">

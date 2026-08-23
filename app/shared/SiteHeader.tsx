@@ -1,7 +1,19 @@
 import Link from "next/link";
 import { categories } from "../data/archive";
+import { HeritageIcon } from "./HeritageIcon";
 
 const nav = ["Home", "Discoveries", "Formulas", "Notebooks", "Life", "Legacy", "Resources", "About"];
+
+const navIcons = {
+  Home: "lotus",
+  Discoveries: "yantra",
+  Formulas: "leaf",
+  Notebooks: "book",
+  Life: "lamp",
+  Legacy: "conch",
+  Resources: "veena",
+  About: "mandala",
+} as const;
 
 function hrefFor(item: string) {
   return item === "Home" ? "/" : `/${item.toLowerCase()}`;
@@ -11,7 +23,7 @@ export function SiteHeader({ active }: { active: string }) {
   return (
     <header className="site-header">
       <Link prefetch={false} className="brand" href="/" aria-label="The Ramanujan Universe home">
-        <span className="brand-mark" aria-hidden="true">R</span>
+        <span className="brand-mark" aria-hidden="true"><HeritageIcon name="mandala" />R</span>
         <span>
           <strong>The Ramanujan Universe</strong>
           <em>The Man. The Mathematics. The Mystery.</em>
@@ -29,7 +41,7 @@ export function SiteHeader({ active }: { active: string }) {
           item === "Discoveries" ? (
             <div className="nav-group" key={item}>
               <Link prefetch={false} className={active === item ? "active" : ""} href="/discoveries">
-                Discoveries
+                <HeritageIcon name={navIcons.Discoveries} /> Discoveries
               </Link>
               <div className="mega-menu" aria-label="Discoveries menu">
                 <Link prefetch={false} href="/discoveries">All Discoveries</Link>
@@ -45,7 +57,7 @@ export function SiteHeader({ active }: { active: string }) {
             </div>
           ) : item === "Notebooks" ? (
             <div className="nav-group" key={item}>
-              <Link prefetch={false} className={active === item ? "active" : ""} href="/notebooks">Notebooks</Link>
+              <Link prefetch={false} className={active === item ? "active" : ""} href="/notebooks"><HeritageIcon name={navIcons.Notebooks} /> Notebooks</Link>
               <div className="mega-menu" aria-label="Notebooks menu">
                 <Link prefetch={false} href="/notebooks">Notebook Overview</Link>
                 <Link prefetch={false} href="/notebooks/three-notebooks">Three Notebooks</Link>
@@ -56,7 +68,7 @@ export function SiteHeader({ active }: { active: string }) {
             </div>
           ) : item === "Life" ? (
             <div className="nav-group" key={item}>
-              <Link prefetch={false} className={active === item ? "active" : ""} href="/life">Life</Link>
+              <Link prefetch={false} className={active === item ? "active" : ""} href="/life"><HeritageIcon name={navIcons.Life} /> Life</Link>
               <div className="mega-menu" aria-label="Life menu">
                 <Link prefetch={false} href="/life">Biography</Link>
                 <Link prefetch={false} href="/timeline">Timeline</Link>
@@ -70,7 +82,7 @@ export function SiteHeader({ active }: { active: string }) {
             </div>
           ) : item === "Resources" ? (
             <div className="nav-group" key={item}>
-              <Link prefetch={false} className={active === item ? "active" : ""} href="/resources">Resources</Link>
+              <Link prefetch={false} className={active === item ? "active" : ""} href="/resources"><HeritageIcon name={navIcons.Resources} /> Resources</Link>
               <div className="mega-menu" aria-label="Resources menu">
                 <Link prefetch={false} href="/resources/published-papers">Published Papers</Link>
                 <Link prefetch={false} href="/resources/references">References</Link>
@@ -82,7 +94,7 @@ export function SiteHeader({ active }: { active: string }) {
             </div>
           ) : (
             <Link prefetch={false} className={active === item ? "active" : ""} href={hrefFor(item)} key={item}>
-              {item}
+              <HeritageIcon name={navIcons[item as keyof typeof navIcons]} /> {item}
             </Link>
           ),
         )}

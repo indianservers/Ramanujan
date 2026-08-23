@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { categories, formulas } from "../data/archive";
 import { CopyLatexButton } from "../shared/CopyLatexButton";
 import { BlockMath } from "../shared/Math";
+import { HeritageIcon } from "../shared/HeritageIcon";
 import { SaveButton } from "../shared/SaveButton";
 
 const allTypes = ["All", ...Array.from(new Set(formulas.map((formula) => formula.resultType)))];
@@ -43,8 +44,8 @@ export function FormulaArchive() {
       </div>
       <div className="formula-grid">
         {results.map((formula) => (
-          <article className="formula-card" key={formula.slug}>
-            <h2>{formula.title}</h2>
+          <article className="formula-card sacred-card" key={formula.slug}>
+            <h2><HeritageIcon name="leaf" /> {formula.title}</h2>
             <BlockMath math={formula.latex} label={formula.title} />
             <p>{formula.plainLanguageMeaning}</p>
             <div><span>{formula.category}</span><span>{formula.resultType}</span><span>{formula.sourceType}</span></div>

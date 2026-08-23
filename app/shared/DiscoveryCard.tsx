@@ -2,6 +2,7 @@ import Link from "next/link";
 import { formulas, type Discovery } from "../data/archive";
 import { BlockMath } from "./Math";
 import { SaveButton } from "./SaveButton";
+import { HeritageIcon } from "./HeritageIcon";
 
 const cardFormula: Record<string, string> = {
   "partition-congruences": "p(5n+4)\\equiv0\\pmod 5",
@@ -17,9 +18,10 @@ export function DiscoveryCard({ discovery }: { discovery: Discovery }) {
   const formula = cardFormula[discovery.slug] ?? canonical?.latex;
 
   return (
-    <article className="discovery-card" id={discovery.categorySlug}>
+    <article className="discovery-card sacred-card" id={discovery.categorySlug}>
       <div className="discovery-card-head">
         <p>
+          <HeritageIcon name="yantra" />{" "}
           {discovery.category} {discovery.year ? `| ${discovery.year}` : ""}
         </p>
         <SaveButton id={`discovery:${discovery.slug}`} label={discovery.title} compact />

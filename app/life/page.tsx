@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { peopleCards, timeline } from "../data/archive";
+import { HeritageMap } from "../shared/HeritageMap";
 import { SiteFooter } from "../shared/SiteFooter";
 import { SiteHeader } from "../shared/SiteHeader";
 
@@ -22,6 +23,7 @@ export default function LifePage() {
             <p><strong>FRS:</strong> Elected 1918</p>
           </aside>
         </section>
+        <HeritageMap />
         <section className="life-grid">
           <div className="timeline parchment">
             {timeline.map(([years, title, text]) => (
@@ -42,7 +44,7 @@ export default function LifePage() {
           </div>
           <aside className="people-stack">
             {peopleCards.map((card) => (
-              <article className="person-card parchment" key={card.title}>
+              <article className="person-card parchment sacred-card" key={card.title}>
                 <img src={card.image} alt={card.alt} />
                 <div>
                   <h2>{card.title}</h2>
