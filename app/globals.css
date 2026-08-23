@@ -60,6 +60,13 @@ input {
   font: inherit;
 }
 
+button,
+input,
+select,
+textarea {
+  font-size: max(16px, 1rem);
+}
+
 :focus-visible {
   outline: 2px solid var(--teal);
   outline-offset: 3px;
@@ -391,6 +398,8 @@ input {
   overflow-y: hidden;
   color: inherit;
   font-size: clamp(0.92rem, 1.15vw, 1.24rem);
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .category-card .math-block,
@@ -740,11 +749,20 @@ input {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .katex,
 .katex-html {
   max-width: 100%;
+}
+
+.math-block .katex-display > .katex,
+.formula-panel .katex-display > .katex,
+.formula-card .katex-display > .katex {
+  display: inline-block;
+  min-width: min-content;
 }
 
 .katex svg {
@@ -1304,13 +1322,42 @@ input {
 
 @media (max-width: 900px) {
   .site-header {
-    align-items: flex-start;
+    min-height: 68px;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 14px;
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    font-size: 1.65rem;
+  }
+
+  .brand strong {
+    font-size: clamp(1.12rem, 5vw, 1.45rem);
+  }
+
+  .brand em {
+    font-size: 0.82rem;
   }
 
   .nav-toggle-label {
     display: grid;
     gap: 5px;
-    padding: 14px 0;
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+    place-content: center;
+    padding: 0;
+    cursor: pointer;
   }
 
   .nav-toggle-label span {
@@ -1321,24 +1368,43 @@ input {
 
   .main-nav {
     position: absolute;
-    inset: 76px 0 auto;
+    inset: 68px 0 auto;
     display: none;
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
     border-bottom: 1px solid var(--line);
     background: #020912;
-    padding: 18px;
+    padding: 12px 14px 18px;
+    font-size: 1rem;
+    gap: 4px;
   }
 
   .nav-toggle:checked ~ .main-nav {
     display: grid;
   }
 
+  .main-nav a {
+    min-height: 44px;
+    padding: 11px 0;
+  }
+
   .mega-menu {
     position: static;
     width: auto;
+    max-height: none;
     transform: none;
+    border-color: rgba(201, 139, 53, 0.28);
+    border-width: 0 0 0 1px;
+    margin: 0 0 8px 10px;
+    padding: 4px 0 4px 12px;
     opacity: 1;
     pointer-events: auto;
     box-shadow: none;
+  }
+
+  .mega-menu a {
+    min-height: 40px;
+    padding: 8px 0;
   }
 
   .hero,
@@ -1349,18 +1415,32 @@ input {
   }
 
   .hero {
-    padding-top: 220px;
+    min-height: auto;
+    padding-top: clamp(150px, 48vw, 220px);
   }
 
   .hero-copy {
+    width: 100%;
     padding: 28px 18px 36px;
   }
 
+  .hero h1,
+  .page-heading h1,
+  .detail-article h1,
+  .life-hero h1,
+  .placeholder-page h1,
+  .editorial-hero h1,
+  .formula-detail h1 {
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+  }
+
   .hero-portrait {
-    top: 70px;
-    right: 18%;
+    top: 58px;
+    right: 50%;
     bottom: auto;
-    width: min(66vw, 380px);
+    width: min(58vw, 310px);
+    transform: translateX(50%);
   }
 
   .devi-shrine {
@@ -1385,6 +1465,20 @@ input {
   .taxonomy-panel,
   .detail-sidebar {
     position: static;
+  }
+
+  .archive-main {
+    order: 1;
+  }
+
+  .taxonomy-panel {
+    order: 2;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+
+  .browse-panel {
+    order: 3;
   }
 
   .detail-page {
@@ -1434,26 +1528,182 @@ input {
 }
 
 @media (max-width: 620px) {
+  body {
+    background:
+      radial-gradient(circle at 50% 4%, rgba(153, 92, 30, 0.18), transparent 18rem),
+      linear-gradient(180deg, #071421 0%, #06131d 55%, #03101a 100%);
+  }
+
+  .site-header {
+    min-height: 64px;
+    padding-inline: 12px;
+  }
+
   .brand {
     min-width: 0;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    box-shadow: inset 0 0 0 4px rgba(201, 139, 53, 0.11);
+  }
+
+  .brand strong {
+    font-size: clamp(1rem, 4.7vw, 1.22rem);
+    line-height: 1;
   }
 
   .brand em {
     display: none;
   }
 
+  .main-nav {
+    inset-block-start: 64px;
+    max-height: calc(100dvh - 64px);
+  }
+
+  .hero {
+    padding-top: clamp(128px, 44vw, 175px);
+  }
+
+  .hero-copy {
+    padding: 24px 14px 32px;
+  }
+
   .hero h1 {
-    font-size: 3.4rem;
+    font-size: clamp(2.72rem, 14vw, 3.4rem);
+    letter-spacing: 0;
+  }
+
+  .hero h2,
+  .ornamental-title h2 {
+    font-size: clamp(1.55rem, 8vw, 2.15rem);
+  }
+
+  .hero-lede {
+    margin: 16px auto;
+    font-size: 1.18rem;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .button {
+    width: 100%;
+    min-height: 48px;
+    padding-inline: 14px;
+  }
+
+  .hero-portrait {
+    top: 54px;
+    width: min(56vw, 220px);
+  }
+
+  .devi-shrine {
+    top: 70px;
+    right: 10px;
+    width: 82px;
+  }
+
+  .scripture-bg {
+    width: 72%;
+  }
+
+  .page-heading {
+    margin-top: 16px;
+  }
+
+  .page-heading h1,
+  .detail-article h1,
+  .life-hero h1,
+  .editorial-hero h1,
+  .formula-detail h1 {
+    font-size: clamp(2.35rem, 11vw, 3rem);
+  }
+
+  .page-heading p,
+  .subtitle {
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
 
   .category-grid,
-  .discovery-grid,
   .archive-facts {
     grid-template-columns: 1fr;
   }
 
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .category-card {
+    min-height: 204px;
+    padding: 13px 10px;
+  }
+
+  .category-card h3,
+  .discovery-card h3,
+  .person-card h2,
+  .timeline h2 {
+    font-size: 1.12rem;
+  }
+
+  .category-card p {
+    font-size: 0.86rem;
+  }
+
+  .quote-panel {
+    padding: 22px 18px;
+  }
+
+  .quote-panel blockquote {
+    font-size: 1.45rem;
+  }
+
+  .archive-facts div {
+    padding: 14px 18px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(201, 139, 53, 0.35);
+  }
+
+  .search-box input {
+    padding: 13px 14px;
+  }
+
+  .filter-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-inline: -14px;
+    overflow-x: auto;
+    padding: 0 14px 8px;
+    scrollbar-width: thin;
+  }
+
+  .filter-row button {
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding: 8px 13px;
+    white-space: nowrap;
+  }
+
+  .discovery-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .discovery-card {
+    min-height: 0;
+    padding: 13px;
+  }
+
   .lost-feature {
     grid-column: auto;
+    padding: 18px;
   }
 
   .timeline article,
@@ -1462,8 +1712,32 @@ input {
     grid-template-columns: 1fr;
   }
 
-  .formula-panel .math-block {
+  .life-hero {
+    gap: 16px;
+  }
+
+  .life-hero > img {
+    max-height: 300px;
+  }
+
+  .life-grid {
+    gap: 14px;
+  }
+
+  .timeline {
+    padding: 12px 18px;
+  }
+
+  .timeline article span {
     font-size: 1.35rem;
+  }
+
+  .formula-panel .math-block {
+    font-size: clamp(1.1rem, 7vw, 1.35rem);
+  }
+
+  .formula-panel {
+    padding: 14px 10px;
   }
 
   .category-heading,
@@ -1476,11 +1750,42 @@ input {
     padding: 22px 16px;
   }
 
+  .formula-detail,
+  .editorial-page {
+    padding-inline: 14px;
+  }
+
+  .formula-card,
+  .concept-card,
+  .editorial-body > article,
+  .reference-group,
+  .subject-index,
+  .empty-state,
+  .policy-page {
+    padding: 18px;
+  }
+
+  .formula-card .math-block,
+  .discovery-card .math-block {
+    margin-inline: -4px;
+    padding-inline: 4px;
+  }
+
   .taxonomy-panel a,
   .sidebar-box a,
   .sidebar-box button {
     flex-wrap: wrap;
     min-width: 0;
+  }
+
+  .taxonomy-panel,
+  .browse-panel,
+  .detail-sidebar {
+    padding: 18px;
+  }
+
+  .sidebar-box dl {
+    grid-template-columns: 96px minmax(0, 1fr);
   }
 
   .archive-page,
@@ -1498,6 +1803,37 @@ input {
   .placeholder-page section {
     max-width: 100%;
     padding: 28px 20px;
+  }
+
+  .site-footer {
+    padding-block: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .devi-shrine {
+    display: none;
+  }
+
+  .hero-portrait {
+    width: min(62vw, 210px);
+  }
+
+  .hero-copy {
+    padding-inline: 12px;
+  }
+
+  .ornamental-title {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .ornamental-title span {
+    display: none;
   }
 }
 
