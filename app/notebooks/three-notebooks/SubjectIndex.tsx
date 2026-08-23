@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { discoveries } from "../../data/archive";
 
@@ -26,7 +25,7 @@ export function SubjectIndex() {
         </select>
       </div>
       <div className="related-link-grid">
-        {results.map((item) => <Link prefetch={false} href={`/discoveries/${item.slug}`} key={item.slug}>{item.title}</Link>)}
+        {results.map((item) => <a href={`/discoveries/${item.slug}`} key={item.slug}>{item.title}</a>)}
       </div>
     </section>
   );

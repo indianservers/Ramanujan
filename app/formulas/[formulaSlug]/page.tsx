@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formulas, getDiscovery, getFormula } from "../../data/archive";
 import { CopyLatexButton } from "../../shared/CopyLatexButton";
@@ -22,7 +21,7 @@ export default async function FormulaPage({ params }: { params: Promise<{ formul
       <SiteHeader active="Formulas" />
       <main className="formula-detail">
         <article className="parchment">
-          <nav className="breadcrumb" aria-label="Breadcrumb"><Link prefetch={false} href="/formulas">Formulas</Link> / <span>{formula.title}</span></nav>
+          <nav className="breadcrumb" aria-label="Breadcrumb"><a href="/formulas">Formulas</a> / <span>{formula.title}</span></nav>
           <h1>{formula.title}</h1>
           <BlockMath math={formula.latex} label={formula.title} />
           <p>{formula.plainLanguageMeaning}</p>
@@ -31,11 +30,11 @@ export default async function FormulaPage({ params }: { params: Promise<{ formul
             <dt>Category</dt><dd>{formula.category}</dd>
             <dt>Result type</dt><dd>{formula.resultType}</dd>
             <dt>Source</dt><dd>{formula.sourceType}</dd>
-            <dt>Associated discovery</dt><dd>{discovery ? <Link prefetch={false} href={`/discoveries/${discovery.slug}`}>{discovery.title}</Link> : "Not linked"}</dd>
+            <dt>Associated discovery</dt><dd>{discovery ? <a href={`/discoveries/${discovery.slug}`}>{discovery.title}</a> : "Not linked"}</dd>
           </dl>
           <div className="formula-tools">
-            {formulas[index - 1] ? <Link prefetch={false} href={`/formulas/${formulas[index - 1].slug}`}>Previous Formula</Link> : null}
-            {formulas[index + 1] ? <Link prefetch={false} href={`/formulas/${formulas[index + 1].slug}`}>Next Formula</Link> : null}
+            {formulas[index - 1] ? <a href={`/formulas/${formulas[index - 1].slug}`}>Previous Formula</a> : null}
+            {formulas[index + 1] ? <a href={`/formulas/${formulas[index + 1].slug}`}>Next Formula</a> : null}
             <CopyLatexButton latex={formula.latex} label={formula.title} />
             <SaveButton id={`formula:${formula.slug}`} label={formula.title} />
           </div>

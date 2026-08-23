@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { papers } from "../../data/archive";
 import { SaveButton } from "../../shared/SaveButton";
@@ -22,7 +21,7 @@ export function PublishedPapers() {
         <select aria-label="Collaborator filter" value={collaborator} onChange={(event) => setCollaborator(event.target.value)}>{collaborators.map((item) => <option key={item}>{item}</option>)}</select>
       </div>
       <div className="formula-grid">
-        {visible.map((paper) => <article className="formula-card" key={paper.slug}><p className="detail-meta">{paper.year} | {paper.journal}</p><h2>{paper.title}</h2><p>{paper.volumePages ?? "Bibliographic details incomplete."}</p><p>{paper.subjects.join(", ")}</p>{paper.relatedDiscoverySlugs[0] ? <Link prefetch={false} href={`/discoveries/${paper.relatedDiscoverySlugs[0]}`}>Related Discovery</Link> : null}<SaveButton id={`paper:${paper.slug}`} label={paper.title} /></article>)}
+        {visible.map((paper) => <article className="formula-card" key={paper.slug}><p className="detail-meta">{paper.year} | {paper.journal}</p><h2>{paper.title}</h2><p>{paper.volumePages ?? "Bibliographic details incomplete."}</p><p>{paper.subjects.join(", ")}</p>{paper.relatedDiscoverySlugs[0] ? <a href={`/discoveries/${paper.relatedDiscoverySlugs[0]}`}>Related Discovery</a> : null}<SaveButton id={`paper:${paper.slug}`} label={paper.title} /></article>)}
       </div>
     </section>
   );

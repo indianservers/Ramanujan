@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { categoryHighlights } from "./data/archive";
 import { SiteFooter } from "./shared/SiteFooter";
 import { SiteHeader } from "./shared/SiteHeader";
@@ -27,12 +26,12 @@ export default function Home() {
               His life, his faith, and the mathematics that changed the world.
             </p>
             <div className="hero-actions">
-              <Link prefetch={false} className="button button-primary" href="/discoveries">
+              <a className="button button-primary" href="/discoveries">
                 Explore Every Discovery
-              </Link>
-              <Link prefetch={false} className="button button-secondary" href="/life">
+              </a>
+              <a className="button button-secondary" href="/life">
                 Know His Story
-              </Link>
+              </a>
             </div>
           </div>
           <img
@@ -54,14 +53,14 @@ export default function Home() {
           <div className="legacy-grid">
             <div className="category-grid">
               {categoryHighlights.map((category) => (
-                <Link prefetch={false} className="category-card parchment sacred-card" href={category.href} key={category.name}>
+                <a className="category-card parchment sacred-card" href={category.href} key={category.name}>
                   <img src={category.icon} alt="" aria-hidden="true" />
                   <h3>{category.name}</h3>
                   <p className="home-formula" aria-label={`${category.name} formula`}>
                     {homeFormulas[category.name] ?? category.formula}
                   </p>
                   <p>{category.description}</p>
-                </Link>
+                </a>
               ))}
             </div>
             <aside className="quote-panel parchment">

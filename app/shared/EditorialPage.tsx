@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { discoveries, type ContentSection } from "../data/archive";
 import { DiscoveryCard } from "./DiscoveryCard";
 import { PageTools } from "./PageTools";
@@ -54,8 +53,8 @@ export function EditorialPage({ active, eyebrow, title, subtitle, image, imageAl
           </article>
           <aside className="sidebar-box">
             <h2>Related</h2>
-            {links.map((link) => <Link prefetch={false} href={link.href} key={link.href}>{link.label}</Link>)}
-            {related.map((item) => <Link prefetch={false} href={`/discoveries/${item.slug}`} key={item.slug}>{item.title}</Link>)}
+            {links.map((link) => <a href={link.href} key={link.href}>{link.label}</a>)}
+            {related.map((item) => <a href={`/discoveries/${item.slug}`} key={item.slug}>{item.title}</a>)}
           </aside>
         </section>
         {related.length ? (

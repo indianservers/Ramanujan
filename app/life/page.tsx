@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { peopleCards, timeline } from "../data/archive";
 import { HeritageMap } from "../shared/HeritageMap";
 import { SiteFooter } from "../shared/SiteFooter";
@@ -37,9 +36,9 @@ export default function LifePage() {
             ))}
             <div className="letter-card">
               <img src="/assets/ramanujan-letter-to-hardy.png" alt="Ramanujan's letter to G. H. Hardy" />
-              <Link prefetch={false} className="button button-primary" href="/letters">
+              <a className="button button-primary" href="/letters">
                 Read Ramanujan&apos;s Letter to Hardy
-              </Link>
+              </a>
             </div>
           </div>
           <aside className="people-stack">

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { categories, discoveries } from "../data/archive";
@@ -65,17 +64,17 @@ export function DiscoveryArchive({ initialCategorySlug }: { initialCategorySlug?
     <div className="archive-layout">
       <aside className="taxonomy-panel">
         <h2>All Contributions</h2>
-        <Link prefetch={false} className={categorySlug === "All" ? "active-filter" : ""} href="/discoveries">
+        <a className={categorySlug === "All" ? "active-filter" : ""} href="/discoveries">
           <span>All Categories</span>
           <b>{discoveries.length}</b>
-        </Link>
+        </a>
         {categories.map((category) => {
           const count = discoveries.filter((item) => item.categorySlug === category.slug).length;
           return (
-            <Link prefetch={false} className={categorySlug === category.slug ? "active-filter" : ""} href={`/discoveries/category/${category.slug}`} key={category.slug}>
+            <a className={categorySlug === category.slug ? "active-filter" : ""} href={`/discoveries/category/${category.slug}`} key={category.slug}>
               <span>{category.title}</span>
               <b>{count || ""}</b>
-            </Link>
+            </a>
           );
         })}
       </aside>
@@ -121,11 +120,11 @@ export function DiscoveryArchive({ initialCategorySlug }: { initialCategorySlug?
 
       <aside className="browse-panel">
         <h2>Browse the Archive</h2>
-        <Link prefetch={false} href="/formulas"><strong>Formula Archive</strong><span>Search canonical formulas</span></Link>
-        <Link prefetch={false} href="/named-concepts"><strong>Named Concepts</strong><span>Historically qualified names</span></Link>
-        <Link prefetch={false} href="/discoveries?type=theorem"><strong>Theorems</strong><span>Proven and conjectural contexts</span></Link>
-        <Link prefetch={false} href="/discoveries?type=identity"><strong>Identities</strong><span>Series, products and q-identities</span></Link>
-        <Link prefetch={false} href="/discoveries?type=conjecture"><strong>Conjectures</strong><span>Original and later formulations</span></Link>
+        <a href="/formulas"><strong>Formula Archive</strong><span>Search canonical formulas</span></a>
+        <a href="/named-concepts"><strong>Named Concepts</strong><span>Historically qualified names</span></a>
+        <a href="/discoveries?type=theorem"><strong>Theorems</strong><span>Proven and conjectural contexts</span></a>
+        <a href="/discoveries?type=identity"><strong>Identities</strong><span>Series, products and q-identities</span></a>
+        <a href="/discoveries?type=conjecture"><strong>Conjectures</strong><span>Original and later formulations</span></a>
       </aside>
     </div>
   );

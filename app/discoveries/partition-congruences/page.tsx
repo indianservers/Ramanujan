@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { discoveries } from "../../data/archive";
 import { BlockMath, InlineMath } from "../../shared/Math";
 import { DiscoveryCard } from "../../shared/DiscoveryCard";
@@ -17,7 +16,7 @@ export default function PartitionCongruencesPage() {
       <main className="detail-page">
         <article className="detail-article">
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link prefetch={false} href="/discoveries">Discoveries</Link> / <Link prefetch={false} href="/discoveries?category=Partitions">Partitions</Link> / <span>Partition Congruences</span>
+            <a href="/discoveries">Discoveries</a> / <a href="/discoveries?category=Partitions">Partitions</a> / <span>Partition Congruences</span>
           </nav>
           <p className="detail-meta">Partitions | 1919</p>
           <h1>The Partition Congruences</h1>
@@ -81,8 +80,8 @@ export default function PartitionCongruencesPage() {
           </div>
           <div className="sidebar-box">
             <h2>Actions</h2>
-            <Link prefetch={false} href="/discoveries">Previous Discovery</Link>
-            <Link prefetch={false} href="/discoveries">Next Discovery</Link>
+            <a href="/discoveries">Previous Discovery</a>
+            <a href="/discoveries">Next Discovery</a>
             <SaveButton id="discovery:partition-congruences" label="The Partition Congruences" />
           </div>
         </aside>

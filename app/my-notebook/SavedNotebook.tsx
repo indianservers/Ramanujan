@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { categories, discoveries, formulas, letters, lifeProfiles, notebooks, papers } from "../data/archive";
 
@@ -54,7 +53,7 @@ export function SavedNotebook() {
               <p className="detail-meta">{item.type}</p>
               <h2>{item.title}</h2>
               <p>{item.summary}</p>
-              <Link prefetch={false} href={item.href}>Open</Link>
+              <a href={item.href}>Open</a>
               <button type="button" onClick={() => persist(saved.filter((savedId) => savedId !== item.id), `${item.title} removed`)}>Remove</button>
             </article>
           ))}
@@ -63,7 +62,7 @@ export function SavedNotebook() {
         <div className="empty-state parchment">
           <h2>No saved items yet</h2>
           <p>Save discoveries, formulas, letters and biography pages as you explore.</p>
-          <Link prefetch={false} className="button button-primary" href="/discoveries">Browse Discoveries</Link>
+          <a className="button button-primary" href="/discoveries">Browse Discoveries</a>
         </div>
       )}
     </section>

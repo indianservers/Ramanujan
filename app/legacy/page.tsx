@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { legacyTopics, namedConcepts } from "../data/archive";
 import { PageTools } from "../shared/PageTools";
 import { SiteFooter } from "../shared/SiteFooter";
@@ -28,7 +27,7 @@ export default function LegacyPage() {
           </article>
           <aside className="sidebar-box">
             <h2>Named in His Honour</h2>
-            {namedConcepts.slice(0, 14).map((item) => <Link prefetch={false} href={`/named-concepts/${item.slug}`} key={item.slug}>{item.title}</Link>)}
+            {namedConcepts.slice(0, 14).map((item) => <a href={`/named-concepts/${item.slug}`} key={item.slug}>{item.title}</a>)}
           </aside>
         </section>
       </main>

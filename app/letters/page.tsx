@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { letters } from "../data/archive";
 import { PageTools } from "../shared/PageTools";
 import { SiteFooter } from "../shared/SiteFooter";
@@ -23,7 +22,7 @@ export default function LettersPage() {
               <p>{letter.context}</p>
               <p>{letter.significance}</p>
               <p className="citation">{letter.citation}</p>
-              <Link prefetch={false} href={`/letters/${letter.slug}`}>Read Letter Context</Link>
+              <a href={`/letters/${letter.slug}`}>Read Letter Context</a>
             </article>
           ))}
         </div>

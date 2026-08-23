@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { categories, discoveries, formulas, letters, lifeProfiles, notebooks, papers, references, timelineEvents, namedConcepts } from "../data/archive";
@@ -48,7 +47,7 @@ export function SearchClient() {
           <h2>{group}</h2>
           {results.filter((item) => item.type === group).slice(0, 12).map((item) => (
             <article key={`${item.type}:${item.href}:${item.title}`}>
-              <h3><Link prefetch={false} href={item.href}>{highlight(item.title, query)}</Link></h3>
+              <h3><a href={item.href}>{highlight(item.title, query)}</a></h3>
               <p>{highlight(item.text, query)}</p>
               <p className="detail-meta">{item.type} | {item.category}</p>
             </article>

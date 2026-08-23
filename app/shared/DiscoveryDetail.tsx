@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { discoveries, formulas, type Discovery } from "../data/archive";
 import { CopyLatexButton } from "./CopyLatexButton";
 import { BlockMath } from "./Math";
@@ -15,7 +14,7 @@ export function DiscoveryDetail({ discovery }: { discovery: Discovery }) {
     <main className="detail-page">
       <article className="detail-article">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link prefetch={false} href="/discoveries">Discoveries</Link> / <Link prefetch={false} href={`/discoveries/category/${discovery.categorySlug}`}>{discovery.category}</Link> / <span>{discovery.title}</span>
+          <a href="/discoveries">Discoveries</a> / <a href={`/discoveries/category/${discovery.categorySlug}`}>{discovery.category}</a> / <span>{discovery.title}</span>
         </nav>
         <p className="detail-meta">{discovery.category} | {discovery.resultType}{discovery.year ? ` | ${discovery.year}` : ""}</p>
         <h1>{discovery.title}</h1>
@@ -26,7 +25,7 @@ export function DiscoveryDetail({ discovery }: { discovery: Discovery }) {
               <div key={formula.slug}>
                 <BlockMath math={formula.latex} label={formula.title} />
                 <div className="formula-tools">
-                  <Link prefetch={false} href={`/formulas/${formula.slug}`}>Formula permalink</Link>
+                  <a href={`/formulas/${formula.slug}`}>Formula permalink</a>
                   <CopyLatexButton latex={formula.latex} label={formula.title} />
                 </div>
               </div>
@@ -80,7 +79,7 @@ export function DiscoveryDetail({ discovery }: { discovery: Discovery }) {
           <section>
             <h2 className="related-title">Related Discoveries</h2>
             <div className="related-link-grid">
-              {related.map((item) => <Link prefetch={false} className="parchment" href={`/discoveries/${item.slug}`} key={item.slug}>{item.title}</Link>)}
+              {related.map((item) => <a className="parchment" href={`/discoveries/${item.slug}`} key={item.slug}>{item.title}</a>)}
             </div>
           </section>
         ) : null}
@@ -99,8 +98,8 @@ export function DiscoveryDetail({ discovery }: { discovery: Discovery }) {
         </div>
         <div className="sidebar-box">
           <h2>Actions</h2>
-          {previous ? <Link prefetch={false} href={`/discoveries/${previous.slug}`}>Previous Discovery</Link> : null}
-          {next ? <Link prefetch={false} href={`/discoveries/${next.slug}`}>Next Discovery</Link> : null}
+          {previous ? <a href={`/discoveries/${previous.slug}`}>Previous Discovery</a> : null}
+          {next ? <a href={`/discoveries/${next.slug}`}>Next Discovery</a> : null}
           <SaveButton id={`discovery:${discovery.slug}`} label={discovery.title} />
         </div>
       </aside>

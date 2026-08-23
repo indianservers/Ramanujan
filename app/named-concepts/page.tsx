@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { namedConcepts } from "../data/archive";
 import { SiteFooter } from "../shared/SiteFooter";
 import { SiteHeader } from "../shared/SiteHeader";
@@ -14,11 +13,11 @@ export default function NamedConceptsPage() {
         </section>
         <section className="concept-grid">
           {namedConcepts.map((concept) => (
-            <Link prefetch={false} className="concept-card" href={`/named-concepts/${concept.slug}`} key={concept.slug}>
+            <a className="concept-card" href={`/named-concepts/${concept.slug}`} key={concept.slug}>
               <span>{concept.status}</span>
               <h2>{concept.title}</h2>
               <p>{concept.summary}</p>
-            </Link>
+            </a>
           ))}
         </section>
       </main>

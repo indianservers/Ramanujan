@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { categories } from "../data/archive";
 import { HeritageIcon } from "./HeritageIcon";
@@ -39,13 +37,13 @@ function NavAnchor({
 export function SiteHeader({ active }: { active: string }) {
   return (
     <header className="site-header">
-      <Link prefetch={false} className="brand" href="/" aria-label="The Ramanujan Universe home">
+      <a className="brand" href="/" aria-label="The Ramanujan Universe home">
         <span className="brand-mark" aria-hidden="true"><HeritageIcon name="mandala" />R</span>
         <span>
           <strong>The Ramanujan Universe</strong>
           <em>The Man. The Mathematics. The Mystery.</em>
         </span>
-      </Link>
+      </a>
       <input className="nav-toggle" id="nav-toggle" type="checkbox" aria-label="Toggle navigation" />
       <label className="nav-toggle-label" htmlFor="nav-toggle">
         <span className="sr-only">Toggle navigation</span>

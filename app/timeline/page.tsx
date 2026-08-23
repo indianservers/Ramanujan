@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { timelineEvents } from "../data/archive";
 import { PageTools } from "../shared/PageTools";
 import { SiteFooter } from "../shared/SiteFooter";
@@ -21,7 +20,7 @@ export default function TimelinePage() {
               <h2>{event.title}</h2>
               <p>{event.text}</p>
               {event.relatedPerson ? <p><strong>Related person:</strong> {event.relatedPerson}</p> : null}
-              {event.relatedDiscoverySlug ? <Link prefetch={false} href={`/discoveries/${event.relatedDiscoverySlug}`}>Related discovery</Link> : null}
+              {event.relatedDiscoverySlug ? <a href={`/discoveries/${event.relatedDiscoverySlug}`}>Related discovery</a> : null}
               {event.relatedSource ? <p className="citation">{event.relatedSource}</p> : null}
             </article>
           ))}

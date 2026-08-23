@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { formulas, type Discovery } from "../data/archive";
 import { BlockMath } from "./Math";
 import { SaveButton } from "./SaveButton";
@@ -37,9 +36,9 @@ export function DiscoveryCard({ discovery }: { discovery: Discovery }) {
       <p className="card-study-line">
         Open the entry for context, source notes, related formulas, and later mathematical developments.
       </p>
-      <Link prefetch={false} href={`/discoveries/${discovery.slug}`}>
+      <a href={`/discoveries/${discovery.slug}`}>
         Read Discovery
-      </Link>
+      </a>
     </article>
   );
 }

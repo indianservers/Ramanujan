@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { HeritageIcon } from "../shared/HeritageIcon";
 import { PageTools } from "../shared/PageTools";
 import { SiteFooter } from "../shared/SiteFooter";
@@ -23,7 +22,7 @@ export default function ResourcesPage() {
           <PageTools id="page:resources" label="Resources" citation="Ramanujan Universe resources index." />
         </section>
         <div className="formula-grid">
-          {links.map(([title, href, text]) => <article className="formula-card sacred-card" key={href}><h2><HeritageIcon name="book" /> {title}</h2><p>{text}</p><Link prefetch={false} href={href}>Open</Link></article>)}
+          {links.map(([title, href, text]) => <article className="formula-card sacred-card" key={href}><h2><HeritageIcon name="book" /> {title}</h2><p>{text}</p><a href={href}>Open</a></article>)}
         </div>
       </main>
       <SiteFooter />

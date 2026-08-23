@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { HeritageIcon } from "./HeritageIcon";
 
 const appUrl = "https://play.google.com/store/apps/details?id=com.indianservers.aiexplorer";
@@ -13,10 +12,10 @@ export function AppDownloadCta() {
           Practice mathematics, explore AI-powered learning tools, and keep studying beyond the Ramanujan archive.
         </p>
       </div>
-      <Link prefetch={false} className="button button-primary" href={appUrl} target="_blank" rel="noreferrer">
+      <a className="button button-primary" href={appUrl} target="_blank" rel="noreferrer">
         <HeritageIcon name="book" />
         Get the Maths App
-      </Link>
+      </a>
     </section>
   );
 }

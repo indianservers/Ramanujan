@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { categories, formulas } from "../data/archive";
 import { CopyLatexButton } from "../shared/CopyLatexButton";
@@ -49,7 +48,7 @@ export function FormulaArchive() {
             <BlockMath math={formula.latex} label={formula.title} />
             <p>{formula.plainLanguageMeaning}</p>
             <div><span>{formula.category}</span><span>{formula.resultType}</span><span>{formula.sourceType}</span></div>
-            <Link prefetch={false} href={`/formulas/${formula.slug}`}>Open Formula</Link>
+            <a href={`/formulas/${formula.slug}`}>Open Formula</a>
             <CopyLatexButton latex={formula.latex} label={formula.title} />
             <SaveButton id={`formula:${formula.slug}`} label={formula.title} />
           </article>
