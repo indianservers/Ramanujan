@@ -53,6 +53,11 @@ export default function PartitionCongruencesPage() {
             </div>
             <p className="citation">S. Ramanujan, Notebook entry dated 1919. Published in Proceedings of the Cambridge Philosophical Society, Vol. 19 (1919), pp. 207-210.</p>
           </section>
+          <section className="detail-study-panel parchment sacred-card">
+            <h2>How to Study This Entry</h2>
+            <p>First read the three congruences as divisibility statements about the partition function. Then compare the examples of <InlineMath math="p(4)" label="p of 4" /> with the formula panel above to see how counting problems can reveal modular arithmetic structure.</p>
+            <p>For a deeper path, continue into the Hardy-Ramanujan asymptotic formula, Rogers-Ramanujan identities, and Ramanujan&apos;s tau function. Together they show how partition theory, q-series, and modular forms illuminate one another.</p>
+          </section>
           <section>
             <h2 className="related-title">Related Discoveries</h2>
             <div className="related-grid">

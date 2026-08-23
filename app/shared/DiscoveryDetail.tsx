@@ -57,6 +57,21 @@ export function DiscoveryDetail({ discovery }: { discovery: Discovery }) {
             <p>{section.body}</p>
           </section>
         ))}
+        {discovery.laterDevelopments?.map((section) => (
+          <section key={section.heading}>
+            <h2>{section.heading}</h2>
+            <p>{section.body}</p>
+          </section>
+        ))}
+        <section className="detail-study-panel parchment sacred-card">
+          <h2>How to Study This Entry</h2>
+          <p>
+            Start with the statement above, then compare its category with nearby entries in the archive. Use the formula permalink when a canonical expression is available, and follow related discoveries to see how the idea connects with partitions, q-series, modular forms, continued fractions, or number theory.
+          </p>
+          <p>
+            Difficulty is marked as {discovery.difficulty.toLowerCase()}, and the editorial status is {discovery.reviewStatus}. Records marked for review preserve the contribution but await tighter primary-source citation.
+          </p>
+        </section>
         <section>
           <h2>Original Source</h2>
           <p className="citation">{discovery.sourceCitation ?? discovery.sourceTitle ?? discovery.sourceType}. Entries marked for review await the unavailable primary markdown catalogue for exact citation detail.</p>

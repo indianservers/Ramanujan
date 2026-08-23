@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { categoryHighlights } from "./data/archive";
-import { BlockMath } from "./shared/Math";
 import { SiteFooter } from "./shared/SiteFooter";
 import { SiteHeader } from "./shared/SiteHeader";
+
+const homeFormulas: Record<string, string> = {
+  "Number Theory": "τ(n) = ∑ 1",
+  "Infinite Series": "1 + 1/1 + 1/2 + 1/3 + ...",
+  "Continued Fractions": "K = 1 / (1 + 1/(1 + ...))",
+  Partitions: "p(5) = 7",
+  "Mock Theta Functions": "f(q) = 1 + ∑ qⁿ² / (-q;q²)ₙ",
+  "Modular Forms": "f(τ + k) = f(τ)",
+};
 
 export default function Home() {
   return (
     <>
       <SiteHeader active="Home" />
-      <main>
+      <main className="home-page">
         <section className="hero">
           <div className="scripture-bg" aria-hidden="true" />
           <div className="hero-copy">
@@ -46,10 +54,12 @@ export default function Home() {
           <div className="legacy-grid">
             <div className="category-grid">
               {categoryHighlights.map((category) => (
-                <Link prefetch={false} className="category-card parchment" href={category.href} key={category.name}>
+                <Link prefetch={false} className="category-card parchment sacred-card" href={category.href} key={category.name}>
                   <img src={category.icon} alt="" aria-hidden="true" />
                   <h3>{category.name}</h3>
-                  <BlockMath math={category.formula} label={`${category.name} formula`} />
+                  <p className="home-formula" aria-label={`${category.name} formula`}>
+                    {homeFormulas[category.name] ?? category.formula}
+                  </p>
                   <p>{category.description}</p>
                 </Link>
               ))}

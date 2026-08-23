@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { categories } from "../data/archive";
+import { AppDownloadCta } from "./AppDownloadCta";
 import { HeritageIcon } from "./HeritageIcon";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
+      <AppDownloadCta />
       <div>
         <h2><HeritageIcon name="lotus" /> The Ramanujan Universe</h2>
         <p>A scholarly archive for Ramanujan&apos;s life, discoveries, notebooks, correspondence and mathematical legacy.</p>

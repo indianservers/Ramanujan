@@ -2,7 +2,7 @@ import Link from "next/link";
 import { categories } from "../data/archive";
 import { HeritageIcon } from "./HeritageIcon";
 
-const nav = ["Home", "Discoveries", "Formulas", "Notebooks", "Life", "Legacy", "Resources", "About"];
+const nav = ["Home", "Discoveries", "Formulas", "Notebooks", "Life", "Legacy", "About"];
 
 const navIcons = {
   Home: "lotus",
@@ -23,7 +23,7 @@ export function SiteHeader({ active }: { active: string }) {
   return (
     <header className="site-header">
       <Link prefetch={false} className="brand" href="/" aria-label="The Ramanujan Universe home">
-        <span className="brand-mark" aria-hidden="true"><HeritageIcon name="mandala" />R</span>
+        <span className="brand-mark" aria-hidden="true"><HeritageIcon name="mandala" />π</span>
         <span>
           <strong>The Ramanujan Universe</strong>
           <em>The Man. The Mathematics. The Mystery.</em>

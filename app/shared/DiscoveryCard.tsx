@@ -29,6 +29,14 @@ export function DiscoveryCard({ discovery }: { discovery: Discovery }) {
       <h3>{discovery.title}</h3>
       {formula ? <BlockMath math={formula} label={canonical?.title ?? `${discovery.title} formula`} /> : <p className="formula-placeholder">Contribution family</p>}
       <p>{discovery.summary}</p>
+      <dl className="discovery-card-facts">
+        <div><dt>Level</dt><dd>{discovery.difficulty}</dd></div>
+        <div><dt>Source</dt><dd>{discovery.sourceType}</dd></div>
+        <div><dt>Status</dt><dd>{discovery.reviewStatus}</dd></div>
+      </dl>
+      <p className="card-study-line">
+        Open the entry for context, source notes, related formulas, and later mathematical developments.
+      </p>
       <Link prefetch={false} href={`/discoveries/${discovery.slug}`}>
         Read Discovery
       </Link>
