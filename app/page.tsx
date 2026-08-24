@@ -1,4 +1,5 @@
 import { categoryHighlights } from "./data/archive";
+import { HeritageIcon } from "./shared/HeritageIcon";
 import { SiteFooter } from "./shared/SiteFooter";
 import { SiteHeader } from "./shared/SiteHeader";
 
@@ -42,6 +43,48 @@ export default function Home() {
           <figure className="devi-shrine">
             <img src="/assets/namagiri-devi-shrine.png" alt="Namagiri Devi shrine" />
           </figure>
+        </section>
+
+        <section className="student-story-section" aria-labelledby="student-story-title">
+          <div className="student-story-copy">
+            <p className="eyebrow">Begin With Wonder</p>
+            <h2 id="student-story-title">A Boy Who Saw Patterns Everywhere</h2>
+            <p>
+              Srinivasa Ramanujan did not begin with a grand laboratory, a famous teacher, or a clear road into the mathematical world. He began with curiosity. In the streets and temples of South India, in school notebooks and borrowed books, numbers became companions. A sum was not just a sum. A fraction was not just a fraction. Each one seemed to hide a door.
+            </p>
+            <p>
+              As a student, he copied results, tested them, changed them, and chased them until they became his own. He filled notebooks with formulas that looked impossible at first glance: partitions, infinite series, continued fractions, modular equations, and strange functions that later generations would spend decades understanding.
+            </p>
+            <p>
+              Ramanujan's story tells students something powerful: mathematics is not only about getting the answer at the back of the book. It is about noticing, wondering, trying again, and trusting that a pattern may be waiting where everyone else sees only symbols.
+            </p>
+            <div className="student-story-actions">
+              <a className="button button-primary" href="/ramanujan">Read His Journey</a>
+              <a className="button button-secondary" href="/discoveries">Find a Pattern</a>
+            </div>
+          </div>
+          <div className="student-story-steps" aria-label="Student inspiration path">
+            <article>
+              <HeritageIcon name="book" />
+              <strong>Start Small</strong>
+              <span>One borrowed book opened a world of identities, theorems, and questions.</span>
+            </article>
+            <article>
+              <HeritageIcon name="lamp" />
+              <strong>Follow Curiosity</strong>
+              <span>He explored patterns because they felt alive, not because a syllabus demanded them.</span>
+            </article>
+            <article>
+              <HeritageIcon name="yantra" />
+              <strong>Make Connections</strong>
+              <span>His formulas linked arithmetic, infinity, geometry, and symmetry in unexpected ways.</span>
+            </article>
+            <article>
+              <HeritageIcon name="leaf" />
+              <strong>Keep Wondering</strong>
+              <span>The best mathematics begins with a question that refuses to leave you alone.</span>
+            </article>
+          </div>
         </section>
 
         <section className="legacy-section" aria-labelledby="legacy-title">
