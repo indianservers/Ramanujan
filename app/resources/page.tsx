@@ -4,6 +4,7 @@ import { SiteFooter } from "../shared/SiteFooter";
 import { SiteHeader } from "../shared/SiteHeader";
 
 const links = [
+  ["Complete Ramanujan Context", "/ramanujan", "Life, education, patrons, manuscripts, myths, modern impact and learning pathways."],
   ["Published Papers", "/resources/published-papers", "Verified papers currently indexed with bibliographic details where available."],
   ["References", "/resources/references", "Primary sources, notebooks, letters, surveys and reliable online archives."],
   ["Further Reading", "/resources/further-reading", "Reading paths for general readers, students and researchers."],

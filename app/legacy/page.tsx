@@ -27,6 +27,10 @@ export default function LegacyPage() {
           </article>
           <aside className="sidebar-box">
             <h2>Named in His Honour</h2>
+            <a href="/ramanujan/modern-impact">Modern Impact</a>
+            <a href="/ramanujan/institutions-and-prizes">Institutions and Prizes</a>
+            <a href="/ramanujan/popular-culture">Popular Culture</a>
+            <a href="/ramanujan/myths-vs-facts">Myths vs Facts</a>
             {namedConcepts.slice(0, 14).map((item) => <a href={`/named-concepts/${item.slug}`} key={item.slug}>{item.title}</a>)}
           </aside>
         </section>

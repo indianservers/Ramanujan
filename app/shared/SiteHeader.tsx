@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { categories } from "../data/archive";
 import { HeritageIcon } from "./HeritageIcon";
 
-const nav = ["Home", "Discoveries", "Formulas", "Notebooks", "Life", "Legacy", "About"];
+const nav = ["Home", "Discoveries", "Formulas", "Notebooks", "Life", "Ramanujan", "Legacy", "About"];
 
 const navIcons = {
   Home: "lotus",
@@ -10,6 +10,7 @@ const navIcons = {
   Formulas: "leaf",
   Notebooks: "book",
   Life: "lamp",
+  Ramanujan: "mandala",
   Legacy: "conch",
   About: "mandala",
 } as const;
@@ -97,6 +98,22 @@ export function SiteHeader({ active }: { active: string }) {
                 <a href="/life/cambridge-years">Cambridge Years</a>
                 <a href="/life/return-to-india">Return to India</a>
                 <a href="/letters">Letters</a>
+              </div>
+            </div>
+          ) : item === "Ramanujan" ? (
+            <div className="nav-group" key={item}>
+              <NavAnchor active={active === item} href="/ramanujan">
+                <HeritageIcon name={navIcons.Ramanujan} /> Ramanujan
+              </NavAnchor>
+              <div className="mega-menu" aria-label="Ramanujan context menu">
+                <a href="/ramanujan">Context Hub</a>
+                <a href="/ramanujan/education-and-self-study">Education and Self-Study</a>
+                <a href="/ramanujan/carr-synopsis">Carr's Synopsis</a>
+                <a href="/ramanujan/early-patrons">Patrons Before Hardy</a>
+                <a href="/ramanujan/health-and-final-years">Health and Final Years</a>
+                <a href="/ramanujan/myths-vs-facts">Myths vs Facts</a>
+                <a href="/ramanujan/modern-impact">Modern Impact</a>
+                <a href="/ramanujan/interactive-learning">Interactive Learning Ideas</a>
               </div>
             </div>
           ) : (

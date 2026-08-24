@@ -149,7 +149,7 @@ textarea {
 .main-nav {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 2.6vw, 38px);
+  gap: clamp(13px, 1.85vw, 30px);
   color: var(--ivory);
   font-family: var(--font-display), serif;
   font-size: 1.08rem;
@@ -175,7 +175,7 @@ textarea {
   content: "✣";
   position: absolute;
   top: 50%;
-  right: calc(clamp(18px, 2.6vw, 38px) * -0.64);
+  right: calc(clamp(13px, 1.85vw, 30px) * -0.64);
   color: var(--gold);
   font-size: 0.72rem;
   transform: translateY(-50%);
@@ -1549,6 +1549,58 @@ textarea {
   padding: 7px 10px;
 }
 
+.ramanujan-hub .page-tools {
+  grid-column: 1 / -1;
+}
+
+.context-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1180px;
+  margin: 0 auto 22px;
+}
+
+.context-summary-grid article {
+  border: 1px solid var(--line);
+  background: rgba(5, 18, 29, 0.82);
+  padding: 16px;
+}
+
+.context-summary-grid strong,
+.context-summary-grid span {
+  display: block;
+}
+
+.context-summary-grid strong {
+  color: var(--gold-bright);
+  font-family: var(--font-display), serif;
+  font-size: 1.42rem;
+}
+
+.context-summary-grid span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: Georgia, serif;
+}
+
+.context-section-list {
+  display: grid;
+  gap: 28px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.context-topic-group .formula-grid {
+  margin-top: 10px;
+}
+
+.context-detail-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  background: linear-gradient(90deg, #f8f3e9 0%, #f6efe1 74%, #06131d 74%);
+}
+
 .formula-detail {
   min-height: 70vh;
   padding: 34px clamp(16px, 5vw, 80px);
@@ -2340,7 +2392,8 @@ textarea {
   }
 
   .featured-discovery-strip,
-  .category-guide-grid {
+  .category-guide-grid,
+  .context-summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -2500,6 +2553,7 @@ textarea {
   .archive-layout,
   .archive-intro-grid,
   .archive-operational-heading,
+  .context-summary-grid,
   .editorial-hero,
   .editorial-body,
   .heritage-map-card,
@@ -2560,6 +2614,10 @@ textarea {
   .detail-page {
     background: #f8f3e9;
     padding: 0 18px 28px;
+  }
+
+  .context-detail-page {
+    background: #f8f3e9;
   }
 
   .detail-article {
@@ -2821,7 +2879,8 @@ textarea {
   }
 
   .featured-discovery-strip,
-  .category-guide-grid {
+  .category-guide-grid,
+  .context-summary-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 

@@ -1,3 +1,5 @@
+import { ramanujanTopics } from "./ramanujan-topics";
+
 export type ResultType = "theorem" | "identity" | "formula" | "conjecture" | "method" | "function" | "continued-fraction" | "series" | "approximation" | "equation" | "concept" | "contribution-family";
 export type Difficulty = "Accessible" | "Intermediate" | "Advanced";
 export type ReviewStatus = "verified" | "source-supplied" | "needs-review";
@@ -626,9 +628,10 @@ export const legacyTopics = [
 ];
 
 export const allPublicRoutes = [
-  "/", "/discoveries", "/formulas", "/named-concepts", "/notebooks", "/notebooks/three-notebooks", "/notebooks/lost-notebook", "/letters", "/letters/ramanujan-to-hardy-1913", "/letters/final-letter-to-hardy", "/timeline", "/life", "/life/namagiri-devi-and-faith", "/life/gh-hardy", "/life/janaki-ammal", "/life/cambridge-years", "/life/return-to-india", "/legacy", "/resources", "/resources/published-papers", "/resources/references", "/resources/further-reading", "/about", "/my-notebook", "/search",
+  "/", "/discoveries", "/formulas", "/named-concepts", "/notebooks", "/notebooks/three-notebooks", "/notebooks/lost-notebook", "/letters", "/letters/ramanujan-to-hardy-1913", "/letters/final-letter-to-hardy", "/timeline", "/life", "/life/namagiri-devi-and-faith", "/life/gh-hardy", "/life/janaki-ammal", "/life/cambridge-years", "/life/return-to-india", "/ramanujan", "/legacy", "/resources", "/resources/published-papers", "/resources/references", "/resources/further-reading", "/about", "/my-notebook", "/search",
   ...categories.map((item) => `/discoveries/category/${item.slug}`),
   ...discoveries.map((item) => `/discoveries/${item.slug}`),
   ...formulas.map((item) => `/formulas/${item.slug}`),
   ...namedConcepts.map((item) => `/named-concepts/${item.slug}`),
+  ...ramanujanTopics.map((item) => `/ramanujan/${item.slug}`),
 ];

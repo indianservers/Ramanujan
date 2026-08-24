@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { categories, discoveries, formulas, letters, lifeProfiles, notebooks, papers, references, timelineEvents, namedConcepts } from "../data/archive";
+import { ramanujanTopics } from "../data/ramanujan-topics";
 
 const records = [
   ...discoveries.map((item) => ({ type: "Discoveries", title: item.title, href: `/discoveries/${item.slug}`, text: item.summary, category: item.category })),
@@ -12,6 +13,7 @@ const records = [
   ...notebooks.map((item) => ({ type: "Notebooks", title: item.title, href: `/notebooks/${item.slug}`, text: item.summary, category: "Notebooks" })),
   ...letters.map((item) => ({ type: "Letters", title: item.title, href: `/letters/${item.slug}`, text: item.significance, category: "Letters" })),
   ...lifeProfiles.map((item) => ({ type: "People", title: item.title, href: `/life/${item.slug}`, text: item.summary, category: "Life" })),
+  ...ramanujanTopics.map((item) => ({ type: "Ramanujan Context", title: item.title, href: `/ramanujan/${item.slug}`, text: item.summary, category: item.category })),
   ...timelineEvents.map((item) => ({ type: "Timeline", title: item.title, href: "/timeline", text: item.text, category: item.location })),
   ...papers.map((item) => ({ type: "Papers", title: item.title, href: "/resources/published-papers", text: `${item.year} ${item.journal} ${item.subjects.join(" ")}`, category: item.subjects[0] })),
   ...references.map((item) => ({ type: "References", title: item.title, href: "/resources/references", text: item.description, category: item.group })),
