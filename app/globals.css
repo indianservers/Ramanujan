@@ -1222,6 +1222,69 @@ textarea {
   font-family: var(--font-display), serif;
 }
 
+.paper-strength-panel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 14px;
+}
+
+.paper-strength-panel article {
+  border: 1px solid rgba(201, 139, 53, 0.42);
+  background:
+    linear-gradient(135deg, rgba(231, 184, 102, 0.1), transparent 56%),
+    rgba(5, 18, 29, 0.82);
+  padding: 14px 16px;
+}
+
+.paper-strength-panel strong,
+.paper-strength-panel span {
+  display: block;
+}
+
+.paper-strength-panel strong {
+  color: var(--gold-bright);
+  font-family: var(--font-display), serif;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.paper-strength-panel span {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.paper-active-filters {
+  justify-content: flex-start;
+}
+
+.paper-card {
+  display: grid;
+  align-content: start;
+}
+
+.paper-card .paper-biblio {
+  color: var(--ivory);
+}
+
+.paper-related-links {
+  display: grid;
+  gap: 7px;
+  margin: 4px 0 12px;
+}
+
+.paper-related-links strong {
+  color: var(--gold-bright);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paper-related-links a {
+  width: fit-content;
+}
+
 .active-filter {
   color: var(--gold-bright) !important;
 }
@@ -2393,6 +2456,7 @@ textarea {
 
   .featured-discovery-strip,
   .category-guide-grid,
+  .paper-strength-panel,
   .context-summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2880,6 +2944,7 @@ textarea {
 
   .featured-discovery-strip,
   .category-guide-grid,
+  .paper-strength-panel,
   .context-summary-grid {
     grid-template-columns: minmax(0, 1fr);
   }
