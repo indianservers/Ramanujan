@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Number theory mandala math icon</title>
+  <rect width="128" height="128" fill="none"/>
+  <g fill="none" stroke="#e7b866" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="44"/>
+    <circle cx="64" cy="64" r="28"/>
+    <path d="M64 20 78 50l30 14-30 14-14 30-14-30-30-14 30-14 14-30Z"/>
+    <path d="M34 34l60 60M94 34 34 94"/>
+  </g>
+  <text x="42" y="75" fill="#f7eddb" font-family="Georgia, serif" font-size="30" font-weight="700">1729</text>
+</svg>

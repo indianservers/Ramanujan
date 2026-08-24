@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Summation diya math icon</title>
+  <rect width="128" height="128" fill="none"/>
+  <g fill="none" stroke="#e7b866" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 78c13 18 70 18 84 0-14 34-70 34-84 0Z"/>
+    <path d="M40 78c12 8 36 8 48 0"/>
+    <path d="M64 24c13 13 17 25 8 35-7-10-10-21-8-35Z"/>
+    <path d="M64 24c-12 15-14 27-5 37"/>
+    <path d="M35 103h58"/>
+  </g>
+  <text x="46" y="88" fill="#f7eddb" font-family="Georgia, serif" font-size="38" font-weight="700">Σ</text>
+</svg>

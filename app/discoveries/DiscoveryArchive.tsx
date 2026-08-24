@@ -122,7 +122,7 @@ export function DiscoveryArchive({ initialCategorySlug }: { initialCategorySlug?
           const count = discoveries.filter((item) => item.categorySlug === category.slug).length;
           return (
             <a className={categorySlug === category.slug ? "active-filter" : ""} href={`/discoveries/category/${category.slug}`} key={category.slug}>
-              <span>{category.title}</span>
+              <span>{category.icon ? <img src={category.icon} alt="" aria-hidden="true" /> : null}{category.title}</span>
               <b className="count-badge">{count || ""}</b>
             </a>
           );

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Palm leaf theorem math icon</title>
+  <rect width="128" height="128" fill="none"/>
+  <g fill="none" stroke="#e7b866" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M23 38c22-16 58-16 82 0-8 22-23 40-41 52-18-12-33-30-41-52Z"/>
+    <path d="M64 30v61"/>
+    <path d="M37 48h54"/>
+    <path d="M43 61h42"/>
+    <path d="M49 74h30"/>
+    <path d="M33 100h62"/>
+  </g>
+  <text x="47" y="67" fill="#f7eddb" font-family="Georgia, serif" font-size="28" font-weight="700">∴</text>
+</svg>

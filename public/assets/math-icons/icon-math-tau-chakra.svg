@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Tau chakra math icon</title>
+  <rect width="128" height="128" fill="none"/>
+  <g fill="none" stroke="#e7b866" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="44"/>
+    <circle cx="64" cy="64" r="24"/>
+    <path d="M64 20v88M20 64h88"/>
+    <path d="M33 33l62 62M95 33 33 95"/>
+    <path d="M64 20c12 14 18 28 18 44s-6 30-18 44"/>
+    <path d="M64 20c-12 14-18 28-18 44s6 30 18 44"/>
+  </g>
+  <text x="52" y="77" fill="#f7eddb" font-family="Georgia, serif" font-size="38" font-weight="700">τ</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Temple pi math icon</title>
+  <rect width="128" height="128" fill="none"/>
+  <g fill="none" stroke="#e7b866" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 46h80L64 20 24 46Z"/>
+    <path d="M32 46v48"/>
+    <path d="M96 46v48"/>
+    <path d="M22 96h84"/>
+    <path d="M28 108h72"/>
+    <path d="M43 54v34"/>
+    <path d="M85 54v34"/>
+    <path d="M52 40h24"/>
+  </g>
+  <text x="46" y="83" fill="#f7eddb" font-family="Georgia, serif" font-size="42" font-weight="700">π</text>
+</svg>

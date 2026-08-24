@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img">
+  <title>Theta yantra math icon</title>
+  <rect width="128" height="128" fill="none"/>
+  <g fill="none" stroke="#e7b866" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 18 106 92H22L64 18Z"/>
+    <path d="M64 110 22 36h84L64 110Z"/>
+    <circle cx="64" cy="64" r="35"/>
+    <circle cx="64" cy="64" r="18"/>
+    <path d="M34 64h60"/>
+  </g>
+  <text x="51" y="76" fill="#f7eddb" font-family="Georgia, serif" font-size="36" font-weight="700">θ</text>
+</svg>
