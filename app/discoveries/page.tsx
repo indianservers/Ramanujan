@@ -7,9 +7,10 @@ export default function DiscoveriesPage() {
     <>
       <SiteHeader active="Discoveries" />
       <main className="archive-page">
-        <section className="page-heading">
-          <h1>Every Discovery. One Living Archive.</h1>
-          <p>Explore Ramanujan&apos;s identities, theorems, conjectures, formulas, and notebook entries.</p>
+        <section className="page-heading archive-operational-heading">
+          <p className="eyebrow">Discovery Archive</p>
+          <h1>Explore Ramanujan&apos;s Discoveries</h1>
+          <p>Search, filter and compare identities, theorems, conjectures, formulas, and notebook contribution families.</p>
         </section>
         <section className="archive-intro-grid" aria-label="Discovery archive guide">
           <article className="sacred-card">

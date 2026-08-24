@@ -12,9 +12,19 @@ const cardFormula: Record<string, string> = {
   "ramanujan-master-theorem": "\\int_0^\\infty x^{s-1}\\phi(x)\\,dx=\\frac{\\pi}{\\sin\\pi s}\\phi(-s)",
 };
 
+function formatLabel(value: string) {
+  return value
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
 export function DiscoveryCard({ discovery }: { discovery: Discovery }) {
   const canonical = formulas.find((formulaEntry) => formulaEntry.slug === discovery.formulaSlugs[0]);
   const formula = cardFormula[discovery.slug] ?? canonical?.latex;
+  const plainLanguage = discovery.difficulty === "Advanced" && formula
+    ? canonical?.plainLanguageMeaning ?? discovery.historicalQualification ?? discovery.summary
+    : undefined;
 
   return (
     <article className="discovery-card sacred-card" id={discovery.categorySlug}>
@@ -28,10 +38,11 @@ export function DiscoveryCard({ discovery }: { discovery: Discovery }) {
       <h3>{discovery.title}</h3>
       {formula ? <BlockMath math={formula} label={canonical?.title ?? `${discovery.title} formula`} /> : <p className="formula-placeholder">Contribution family</p>}
       <p>{discovery.summary}</p>
+      {plainLanguage ? <p className="plain-language-summary"><strong>Plain language:</strong> {plainLanguage}</p> : null}
       <dl className="discovery-card-facts">
         <div><dt>Level</dt><dd>{discovery.difficulty}</dd></div>
         <div><dt>Source</dt><dd>{discovery.sourceType}</dd></div>
-        <div><dt>Status</dt><dd>{discovery.reviewStatus}</dd></div>
+        <div><dt>Status</dt><dd>{formatLabel(discovery.reviewStatus)}</dd></div>
       </dl>
       <p className="card-study-line">
         Open the entry for context, source notes, related formulas, and later mathematical developments.

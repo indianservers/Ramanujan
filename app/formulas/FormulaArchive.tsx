@@ -47,7 +47,7 @@ export function FormulaArchive() {
             <h2><HeritageIcon name="leaf" /> {formula.title}</h2>
             <BlockMath math={formula.latex} label={formula.title} />
             <p>{formula.plainLanguageMeaning}</p>
-            <div><span>{formula.category}</span><span>{formula.resultType}</span><span>{formula.sourceType}</span></div>
+            <div className="formula-card-tags"><span>{formula.category}</span><span>{formula.resultType}</span><span>{formula.sourceType}</span></div>
             <a href={`/formulas/${formula.slug}`}>Open Formula</a>
             <CopyLatexButton latex={formula.latex} label={formula.title} />
             <SaveButton id={`formula:${formula.slug}`} label={formula.title} />
