@@ -27,6 +27,7 @@ const routes = [
   "/life/gh-hardy",
   "/legacy",
   "/resources/published-papers",
+  "/resources/published-papers/modular-equations-pi-paper",
   "/resources/references",
   "/about",
   "/my-notebook",
@@ -112,7 +113,7 @@ for (const [label, width, height] of sizes) {
     }
 
     if (route === "/" && label === "mobile") {
-      await page.locator("label.nav-toggle-label").click();
+      await page.locator("button.nav-toggle-label").click();
       await page.waitForTimeout(250);
       const navDisplay = await page.locator(".main-nav").evaluate((element) => getComputedStyle(element).display);
       findings.push({ check: "mobile-nav", navDisplay });

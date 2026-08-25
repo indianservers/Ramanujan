@@ -4,12 +4,12 @@ import { SiteFooter } from "./shared/SiteFooter";
 import { SiteHeader } from "./shared/SiteHeader";
 
 const homeFormulas: Record<string, string> = {
-  "Number Theory": "τ(n) = ∑ 1",
+  "Number Theory": "tau(n) = sum d^11",
   "Infinite Series": "1 + 1/1 + 1/2 + 1/3 + ...",
   "Continued Fractions": "K = 1 / (1 + 1/(1 + ...))",
   Partitions: "p(5) = 7",
-  "Mock Theta Functions": "f(q) = 1 + ∑ qⁿ² / (-q;q²)ₙ",
-  "Modular Forms": "f(τ + k) = f(τ)",
+  "Mock Theta Functions": "f(q) = 1 + sum q^(n^2)",
+  "Modular Forms": "f(tau + 1) = f(tau)",
 };
 
 export default function Home() {
@@ -56,7 +56,7 @@ export default function Home() {
               As a student, he copied results, tested them, changed them, and chased them until they became his own. He filled notebooks with formulas that looked impossible at first glance: partitions, infinite series, continued fractions, modular equations, and strange functions that later generations would spend decades understanding.
             </p>
             <p>
-              Ramanujan's story tells students something powerful: mathematics is not only about getting the answer at the back of the book. It is about noticing, wondering, trying again, and trusting that a pattern may be waiting where everyone else sees only symbols.
+              Ramanujan&apos;s story tells students something powerful: mathematics is not only about getting the answer at the back of the book. It is about noticing, wondering, trying again, and trusting that a pattern may be waiting where everyone else sees only symbols.
             </p>
             <div className="student-story-actions">
               <a className="button button-primary" href="/ramanujan">Read His Journey</a>

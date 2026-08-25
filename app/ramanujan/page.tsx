@@ -22,6 +22,14 @@ export default function RamanujanHubPage() {
           <article><strong>{categories.length}</strong><span>coverage areas</span></article>
           <article><strong>Life + Math</strong><span>connected reading paths</span></article>
         </section>
+        <section className="student-pathway-callout parchment sacred-card">
+          <div>
+            <p className="eyebrow">For Students</p>
+            <h2>Fall in Love With the Pattern First</h2>
+            <p>Start with Ramanujan as a learner: a young mind noticing patterns, copying formulas, testing them, and turning curiosity into a lifelong mathematical language.</p>
+          </div>
+          <a className="button button-primary" href="/ramanujan/education-and-self-study">Start the Student Path</a>
+        </section>
         <section className="context-section-list">
           {categories.map((category) => {
             const topics = ramanujanTopics.filter((topic) => topic.category === category);

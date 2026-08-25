@@ -15,9 +15,25 @@ const records = [
   ...lifeProfiles.map((item) => ({ type: "People", title: item.title, href: `/life/${item.slug}`, text: item.summary, category: "Life" })),
   ...ramanujanTopics.map((item) => ({ type: "Ramanujan Context", title: item.title, href: `/ramanujan/${item.slug}`, text: item.summary, category: item.category })),
   ...timelineEvents.map((item) => ({ type: "Timeline", title: item.title, href: "/timeline", text: item.text, category: item.location })),
-  ...papers.map((item) => ({ type: "Papers", title: item.title, href: "/resources/published-papers", text: `${item.year} ${item.journal} ${item.subjects.join(" ")}`, category: item.subjects[0] })),
+  ...papers.map((item) => ({ type: "Papers", title: item.title, href: `/resources/published-papers/${item.slug}`, text: `${item.year} ${item.journal} ${item.subjects.join(" ")}`, category: item.subjects[0] })),
   ...references.map((item) => ({ type: "References", title: item.title, href: "/resources/references", text: item.description, category: item.group })),
 ];
+
+const typeOrder = ["Discoveries", "Formulas", "Papers", "Ramanujan Context", "Named Concepts", "Notebooks", "Letters", "People", "Timeline", "References", "Categories"];
+
+function score(item: (typeof records)[number], query: string) {
+  const needle = query.toLowerCase();
+  const title = item.title.toLowerCase();
+  const category = item.category.toLowerCase();
+  let value = 0;
+  if (title === needle) value += 80;
+  if (title.startsWith(needle)) value += 45;
+  if (title.includes(needle)) value += 25;
+  if (category.includes(needle)) value += 12;
+  if (item.text.toLowerCase().includes(needle)) value += 8;
+  value += Math.max(0, 10 - typeOrder.indexOf(item.type));
+  return value;
+}
 
 function highlight(text: string, query: string) {
   if (!query.trim()) return text;
@@ -29,13 +45,18 @@ function highlight(text: string, query: string) {
 export function SearchClient() {
   const params = useSearchParams();
   const [query, setQuery] = useState(params.get("q") ?? "");
+  const [typeFilter, setTypeFilter] = useState("All");
+  const [limit, setLimit] = useState(24);
   const results = useMemo(() => {
     const needle = query.toLowerCase().trim();
     if (!needle) return [];
-    return records.filter((item) => [item.title, item.text, item.category, item.type].join(" ").toLowerCase().includes(needle));
-  }, [query]);
+    return records
+      .filter((item) => (typeFilter === "All" || item.type === typeFilter) && [item.title, item.text, item.category, item.type].join(" ").toLowerCase().includes(needle))
+      .sort((a, b) => score(b, needle) - score(a, needle) || a.title.localeCompare(b.title));
+  }, [query, typeFilter]);
   const groups = Array.from(new Set(results.map((item) => item.type)));
   const suggestions = Array.from(new Set(results.map((item) => item.category))).slice(0, 6);
+  const visibleGroups = groups.map((group) => ({ group, items: results.filter((item) => item.type === group).slice(0, limit) })).filter((item) => item.items.length);
 
   return (
     <section className="search-results" aria-live="polite">
@@ -43,11 +64,18 @@ export function SearchClient() {
         <span>Search the site</span>
         <input name="q" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search discoveries, formulas, people, notebooks, letters..." />
       </form>
+      <div className="formula-filter-bar">
+        <select aria-label="Search result type" value={typeFilter} onChange={(event) => { setTypeFilter(event.target.value); setLimit(24); }}>
+          <option>All</option>
+          {typeOrder.filter((item) => records.some((record) => record.type === item)).map((item) => <option key={item}>{item}</option>)}
+        </select>
+        <button type="button" onClick={() => { setQuery(""); setTypeFilter("All"); setLimit(24); }}>Clear search</button>
+      </div>
       <p className="result-count">{query ? `${results.length} results for "${query}"` : "Enter a query to search the archive."}</p>
-      {groups.map((group) => (
+      {visibleGroups.map(({ group, items }) => (
         <section className="reference-group parchment" key={group}>
           <h2>{group}</h2>
-          {results.filter((item) => item.type === group).slice(0, 12).map((item) => (
+          {items.map((item) => (
             <article key={`${item.type}:${item.href}:${item.title}`}>
               <h3><a href={item.href}>{highlight(item.title, query)}</a></h3>
               <p>{highlight(item.text, query)}</p>
@@ -56,6 +84,7 @@ export function SearchClient() {
           ))}
         </section>
       ))}
+      {results.length > visibleGroups.reduce((sum, item) => sum + item.items.length, 0) ? <button className="button button-secondary" type="button" onClick={() => setLimit((value) => value + 24)}>Show more results</button> : null}
       {query && !results.length ? <div className="empty-state parchment"><h2>No matching records</h2><p>Try a subject such as partitions, mock theta, Hardy, notebooks or tau.</p></div> : null}
       {suggestions.length ? <p className="result-count">Related categories: {suggestions.join(", ")}</p> : null}
     </section>

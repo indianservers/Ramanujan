@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { formulas, getDiscovery, getFormula } from "../../data/archive";
 import { CopyLatexButton } from "../../shared/CopyLatexButton";
@@ -8,6 +9,26 @@ import { SaveButton } from "../../shared/SaveButton";
 
 export function generateStaticParams() {
   return formulas.map((formula) => ({ formulaSlug: formula.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ formulaSlug: string }> }): Promise<Metadata> {
+  const { formulaSlug } = await params;
+  const formula = getFormula(formulaSlug);
+  if (!formula) return {};
+  return {
+    title: formula.title,
+    description: formula.plainLanguageMeaning ?? `${formula.category} formula in the Ramanujan archive.`,
+    openGraph: {
+      title: `${formula.title} | The Ramanujan Universe`,
+      description: formula.plainLanguageMeaning ?? `${formula.category} formula in the Ramanujan archive.`,
+      images: [],
+    },
+    twitter: {
+      title: `${formula.title} | The Ramanujan Universe`,
+      description: formula.plainLanguageMeaning ?? `${formula.category} formula in the Ramanujan archive.`,
+      images: [],
+    },
+  };
 }
 
 export default async function FormulaPage({ params }: { params: Promise<{ formulaSlug: string }> }) {

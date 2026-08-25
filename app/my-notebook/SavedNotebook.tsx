@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { categories, discoveries, formulas, letters, lifeProfiles, notebooks, papers } from "../data/archive";
 
 const savedKey = "ramanujan-universe-saved";
+const notesKey = "ramanujan-universe-notes";
 
 const records = [
   ...discoveries.map((item) => ({ id: `discovery:${item.slug}`, type: "Discovery", title: item.title, href: `/discoveries/${item.slug}`, summary: item.summary })),
@@ -12,7 +13,7 @@ const records = [
   ...notebooks.map((item) => ({ id: `notebook:${item.slug}`, type: "Notebook", title: item.title, href: `/notebooks/${item.slug}`, summary: item.summary })),
   ...letters.map((item) => ({ id: `letter:${item.slug}`, type: "Letter", title: item.title, href: `/letters/${item.slug}`, summary: item.significance })),
   ...lifeProfiles.map((item) => ({ id: `life:${item.slug}`, type: "Biography", title: item.title, href: `/life/${item.slug}`, summary: item.summary })),
-  ...papers.map((item) => ({ id: `paper:${item.slug}`, type: "Paper", title: item.title, href: "/resources/published-papers", summary: `${item.year} | ${item.journal}` })),
+  ...papers.map((item) => ({ id: `paper:${item.slug}`, type: "Paper", title: item.title, href: `/resources/published-papers/${item.slug}`, summary: `${item.year} | ${item.journal}` })),
 ];
 
 function readSaved() {
@@ -24,8 +25,18 @@ function readSaved() {
   }
 }
 
+function readNotes() {
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(notesKey) ?? "{}") as Record<string, string>;
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
 export function SavedNotebook() {
   const [saved, setSaved] = useState<string[]>(() => readSaved());
+  const [notes, setNotes] = useState<Record<string, string>>(() => readNotes());
   const [filter, setFilter] = useState("All");
   const [message, setMessage] = useState("");
   const types = ["All", ...Array.from(new Set(records.map((item) => item.type)))];
@@ -37,14 +48,48 @@ export function SavedNotebook() {
     setMessage(text);
   }
 
+  function updateNote(id: string, value: string) {
+    const next = { ...notes, [id]: value };
+    if (!value.trim()) delete next[id];
+    window.localStorage.setItem(notesKey, JSON.stringify(next));
+    setNotes(next);
+  }
+
+  function exportNotebook() {
+    const payload = JSON.stringify({ saved, notes, exportedAt: new Date().toISOString() }, null, 2);
+    void navigator.clipboard.writeText(payload).then(() => setMessage("Notebook export copied"), () => setMessage("Export ready but clipboard was blocked"));
+  }
+
+  async function importNotebook(file: File | undefined) {
+    if (!file) return;
+    try {
+      const parsed = JSON.parse(await file.text()) as { saved?: string[]; notes?: Record<string, string> };
+      const validSaved = Array.isArray(parsed.saved) ? parsed.saved.filter((id) => records.some((item) => item.id === id)) : [];
+      const validNotes = parsed.notes && typeof parsed.notes === "object" ? parsed.notes : {};
+      window.localStorage.setItem(savedKey, JSON.stringify(validSaved));
+      window.localStorage.setItem(notesKey, JSON.stringify(validNotes));
+      setSaved(validSaved);
+      setNotes(validNotes);
+      setMessage("Notebook imported");
+    } catch {
+      setMessage("Import failed: choose a valid notebook JSON export");
+    }
+  }
+
   return (
     <section className="saved-notebook" aria-live="polite">
       <div className="formula-filter-bar">
         <select aria-label="Filter saved items" value={filter} onChange={(event) => setFilter(event.target.value)}>
           {types.map((item) => <option key={item}>{item}</option>)}
         </select>
+        <button type="button" onClick={exportNotebook}>Copy export</button>
+        <label className="file-import-button">
+          <span>Import JSON</span>
+          <input type="file" accept="application/json" onChange={(event) => void importNotebook(event.target.files?.[0])} />
+        </label>
         <button type="button" onClick={() => window.confirm("Clear all saved items?") ? persist([], "Saved notebook cleared") : undefined}>Clear all</button>
       </div>
+      <p className="result-count">{saved.length} saved items. Add notes to turn this into a study notebook.</p>
       {message ? <p className="result-count">{message}</p> : null}
       {visible.length ? (
         <div className="formula-grid">
@@ -53,6 +98,10 @@ export function SavedNotebook() {
               <p className="detail-meta">{item.type}</p>
               <h2>{item.title}</h2>
               <p>{item.summary}</p>
+              <label className="notebook-note">
+                <span>Study note</span>
+                <textarea value={notes[item.id] ?? ""} onChange={(event) => updateNote(item.id, event.target.value)} placeholder="Why did this catch your attention?" />
+              </label>
               <a href={item.href}>Open</a>
               <button type="button" onClick={() => persist(saved.filter((savedId) => savedId !== item.id), `${item.title} removed`)}>Remove</button>
             </article>

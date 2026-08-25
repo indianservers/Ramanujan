@@ -13,8 +13,12 @@ export function PageTools({ id, label, citation }: PageToolsProps) {
   const [status, setStatus] = useState("");
 
   async function copyText(text: string, message: string) {
-    await navigator.clipboard.writeText(text);
-    setStatus(message);
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus(message);
+    } catch {
+      setStatus("Copy blocked by browser");
+    }
     window.setTimeout(() => setStatus(""), 1800);
   }
 

@@ -283,6 +283,25 @@ const seedRows: Seed[] = [
 
 const categoryBySlug = new Map(categories.map((category) => [category.slug, category]));
 const featured = new Set(["partition-congruences", "hardy-ramanujan-asymptotic-formula", "mock-theta-functions", "ramanujan-one-over-pi-series", "rogers-ramanujan-identities", "rogers-ramanujan-continued-fraction", "ramanujan-tau-function", "ramanujan-sums", "highly-composite-numbers", "ramanujan-master-theorem", "ramanujan-differential-equations"]);
+const sourceProfiles: Record<string, { title: string; citation: string; url?: string }> = {
+  "Published Papers": {
+    title: "Collected Papers of Srinivasa Ramanujan",
+    citation: "Printed paper record cross-linked with the published works index and the Collected Papers of Srinivasa Ramanujan.",
+    url: "https://archive.org/details/collectedpaperso033642mbp",
+  },
+  "Lost Notebook": {
+    title: "Ramanujan's Lost Notebook",
+    citation: "Lost Notebook family entry; exact page-level annotation should be checked against Andrews-Berndt before quotation.",
+  },
+  "Hardy-Ramanujan": {
+    title: "Hardy-Ramanujan collaboration record",
+    citation: "Collaborative Hardy-Ramanujan result, cross-linked with the published-paper and Cambridge-period archive.",
+  },
+  "Source catalogue": {
+    title: "Ramanujan Universe contribution catalogue",
+    citation: "Editorial catalogue entry derived from the contribution taxonomy; flagged for source review when no primary paper or notebook pointer is attached.",
+  },
+};
 
 export const formulas: FormulaEntry[] = seedRows.filter((row) => row[4]).map(([slug, title, categorySlug, resultType, latex, note, difficulty, , sourceType]) => {
   const category = categoryBySlug.get(categorySlug);
@@ -314,6 +333,7 @@ export const discoveries: Discovery[] = seedRows.map(([slug, title, categorySlug
   const category = categoryBySlug.get(categorySlug);
   const formulaSlug = formulas.find((formula) => formula.discoverySlug === slug)?.slug;
   const isHistorical = Boolean(note?.includes("later") || note?.includes("not") || note?.includes("Rogers") || note?.includes("Landau") || note?.includes("Soldner") || note?.includes("Hermite") || note?.includes("Nagell"));
+  const sourceProfile = sourceProfiles[sourceType ?? "Source catalogue"];
   return {
     slug,
     title,
@@ -331,7 +351,9 @@ export const discoveries: Discovery[] = seedRows.map(([slug, title, categorySlug
     explanation: [{ heading: "Reading the Entry", body: "Formula panels show canonical notation where available. Broad families are grouped editorially rather than expanded into unsupported individual notebook entries." }],
     historicalContext: isHistorical ? [{ heading: "Historical Qualification", body: note ?? "" }] : undefined,
     sourceType: sourceType ?? "Source catalogue",
-    sourceTitle: sourceType === "Lost Notebook" ? "The Lost Notebook" : undefined,
+    sourceTitle: sourceProfile.title,
+    sourceCitation: sourceProfile.citation,
+    sourceUrl: sourceProfile.url,
     notebookReference: sourceType === "Lost Notebook" ? "Lost Notebook" : undefined,
     relatedDiscoverySlugs: relatedMap[slug] ?? [],
     relatedFormulaSlugs: formulaSlug ? [formulaSlug] : [],
@@ -639,6 +661,10 @@ export const references: ReferenceRecord[] = [
   { slug: "collected-papers", title: "Collected Papers of Srinivasa Ramanujan", author: "S. Ramanujan; edited by G. H. Hardy, P. V. Seshu Aiyar and B. M. Wilson", type: "Primary and collected source", group: "Collected papers", description: "Collected published papers and editorial apparatus for Ramanujan's printed work.", externalLink: "https://archive.org/details/collectedpaperso033642mbp", accessStatus: "External archive", reviewStatus: "source-supplied" },
   { slug: "notebooks-berndt", title: "Ramanujan's Notebooks", author: "Bruce C. Berndt", type: "Edited notebooks", group: "Three Notebooks", description: "Multi-volume annotated study of Ramanujan's notebooks.", accessStatus: "Bibliographic reference", reviewStatus: "needs-review" },
   { slug: "lost-notebook-andrews-berndt", title: "Ramanujan's Lost Notebook", author: "George E. Andrews and Bruce C. Berndt", type: "Edited lost notebook", group: "Lost Notebook", description: "Annotated study of the Lost Notebook material.", accessStatus: "Bibliographic reference", reviewStatus: "needs-review" },
+  { slug: "published-works-index", title: "Published Works of Srinivasa Ramanujan", author: "S. Ramanujan bibliography", type: "Published works index", group: "Collected papers", description: "Chronological list of Ramanujan's published works used to expand the 37-paper index.", externalLink: "https://ramanujan.sirinudi.org/html/published_papers.html", accessStatus: "External bibliography", reviewStatus: "source-supplied" },
+  { slug: "carr-synopsis", title: "A Synopsis of Elementary Results in Pure and Applied Mathematics", author: "G. S. Carr", type: "Historical source", group: "Early influences", description: "The compendium that helped shape Ramanujan's early self-study habits and formula-driven style.", accessStatus: "Bibliographic reference", reviewStatus: "source-supplied" },
+  { slug: "hardy-apology", title: "A Mathematician's Apology and Related Essays", author: "G. H. Hardy", type: "Historical commentary", group: "Academic surveys", description: "Context for Hardy's view of mathematical beauty and the Cambridge culture around Ramanujan.", accessStatus: "Bibliographic reference", reviewStatus: "needs-review" },
+  { slug: "berndt-ramanujan-essays", title: "Number Theory in the Spirit of Ramanujan", author: "Bruce C. Berndt", type: "Academic exposition", group: "Academic surveys", description: "Expository path into Ramanujan's number-theoretic style for advanced students.", accessStatus: "Bibliographic reference", reviewStatus: "needs-review" },
   { slug: "indian-academy-ramanujan", title: "Ramanujan Materials", author: "Indian Academy of Sciences", type: "Online archive", group: "Reliable online archives", description: "Institutional material related to Ramanujan and Indian mathematics.", externalLink: "https://www.ias.ac.in/", accessStatus: "External site", reviewStatus: "needs-review" },
   { slug: "ams-feature-column", title: "AMS Notices and Feature Material on Ramanujan", author: "American Mathematical Society", type: "Academic commentary", group: "Academic surveys", description: "Survey and expository material on Ramanujan's influence.", externalLink: "https://www.ams.org/", accessStatus: "External site", reviewStatus: "needs-review" },
   { slug: "hardy-ramanujan-correspondence", title: "Hardy-Ramanujan Correspondence", author: "G. H. Hardy and S. Ramanujan", type: "Letters", group: "Letters", description: "Historical correspondence connecting Ramanujan's Indian work to Cambridge.", accessStatus: "Cited historical source", reviewStatus: "source-supplied" },
@@ -646,6 +672,8 @@ export const references: ReferenceRecord[] = [
 
 export const furtherReading: ReadingRecord[] = [
   { slug: "man-who-knew-infinity", title: "The Man Who Knew Infinity", audience: "General readers", author: "Robert Kanigel", description: "A widely read biography of Ramanujan for general audiences.", accessStatus: "Commercial book" },
+  { slug: "ramanujan-mathematics-for-students", title: "Ramanujan: Essays and Surveys", audience: "General readers", author: "Collected expository authors", description: "Readable essays that connect Ramanujan's life with approachable mathematical themes.", accessStatus: "Bibliographic reference" },
+  { slug: "partition-theory-introduction", title: "An Introduction to the Theory of Partitions", audience: "Undergraduate mathematics students", author: "George E. Andrews", description: "A student-friendly route into the partition ideas that make Ramanujan's congruences feel alive.", accessStatus: "Commercial book" },
   { slug: "ramanujan-twelve-lectures", title: "Ramanujan: Twelve Lectures on Subjects Suggested by His Life and Work", audience: "Advanced students", author: "G. H. Hardy", description: "Hardy's lectures on mathematical themes surrounding Ramanujan.", accessStatus: "Bibliographic reference" },
   { slug: "collected-papers-reading", title: "Collected Papers of Srinivasa Ramanujan", audience: "Researchers", author: "S. Ramanujan", description: "Primary published mathematical work.", accessStatus: "External archive", externalLink: "https://archive.org/details/collectedpaperso033642mbp" },
   { slug: "lost-notebook-reading", title: "Ramanujan's Lost Notebook", audience: "Researchers", author: "George E. Andrews and Bruce C. Berndt", description: "Detailed annotated study of the rediscovered material.", accessStatus: "Bibliographic reference" },
@@ -665,5 +693,6 @@ export const allPublicRoutes = [
   ...discoveries.map((item) => `/discoveries/${item.slug}`),
   ...formulas.map((item) => `/formulas/${item.slug}`),
   ...namedConcepts.map((item) => `/named-concepts/${item.slug}`),
+  ...papers.map((item) => `/resources/published-papers/${item.slug}`),
   ...ramanujanTopics.map((item) => `/ramanujan/${item.slug}`),
 ];

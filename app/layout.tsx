@@ -21,7 +21,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ramanujan-universe.local"),
+  metadataBase: new URL("https://ramanujan-discoveries.sai355897.chatgpt.site"),
   title: {
     default: "The Ramanujan Universe",
     template: "%s | The Ramanujan Universe",

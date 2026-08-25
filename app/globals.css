@@ -393,7 +393,6 @@ textarea {
   z-index: 1;
 }
 
-.nav-toggle,
 .nav-toggle-label {
   display: none;
 }
@@ -1627,12 +1626,27 @@ textarea {
 }
 
 .formula-filter-bar select,
-.formula-filter-bar button {
+.formula-filter-bar button,
+.file-import-button {
   min-height: 42px;
   border: 1px solid var(--line);
   background: rgba(5, 18, 29, 0.88);
   color: var(--ivory);
   padding: 8px 10px;
+}
+
+.file-import-button {
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.file-import-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
 }
 
 .formula-grid,
@@ -1693,6 +1707,28 @@ textarea {
   padding: 7px 10px;
 }
 
+.notebook-note {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 12px;
+}
+
+.notebook-note span {
+  color: var(--gold-bright);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.notebook-note textarea {
+  min-height: 86px;
+  resize: vertical;
+  border: 1px solid rgba(201, 139, 53, 0.35);
+  background: rgba(2, 12, 22, 0.58);
+  color: var(--ivory);
+  padding: 10px;
+}
+
 .ramanujan-hub .page-tools {
   grid-column: 1 / -1;
 }
@@ -1720,6 +1756,29 @@ textarea {
   color: var(--gold-bright);
   font-family: var(--font-display), serif;
   font-size: 1.42rem;
+}
+
+.student-pathway-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto 22px;
+  padding: 20px;
+}
+
+.student-pathway-callout h2 {
+  margin: 0;
+  color: var(--vermilion);
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+}
+
+.student-pathway-callout p:not(.eyebrow) {
+  margin: 8px 0 0;
+  font-family: Georgia, serif;
+  line-height: 1.4;
 }
 
 .context-summary-grid span {
@@ -2588,6 +2647,8 @@ textarea {
 
   .nav-toggle-label {
     display: grid;
+    border: 0;
+    background: transparent;
     gap: 5px;
     flex: 0 0 auto;
     min-width: 44px;
@@ -2621,7 +2682,7 @@ textarea {
     display: none;
   }
 
-  .nav-toggle:checked ~ .main-nav {
+  .main-nav.open {
     display: grid;
   }
 
@@ -2696,6 +2757,7 @@ textarea {
 
   .legacy-grid,
   .student-story-section,
+  .student-pathway-callout,
   .archive-layout,
   .archive-intro-grid,
   .archive-operational-heading,

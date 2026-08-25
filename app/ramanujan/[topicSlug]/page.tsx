@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getRamanujanTopic, ramanujanTopics } from "../../data/ramanujan-topics";
 import { PageTools } from "../../shared/PageTools";
@@ -6,6 +7,26 @@ import { SiteHeader } from "../../shared/SiteHeader";
 
 export function generateStaticParams() {
   return ramanujanTopics.map((topic) => ({ topicSlug: topic.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ topicSlug: string }> }): Promise<Metadata> {
+  const { topicSlug } = await params;
+  const topic = getRamanujanTopic(topicSlug);
+  if (!topic) return {};
+  return {
+    title: topic.title,
+    description: topic.summary,
+    openGraph: {
+      title: `${topic.title} | The Ramanujan Universe`,
+      description: topic.summary,
+      images: [],
+    },
+    twitter: {
+      title: `${topic.title} | The Ramanujan Universe`,
+      description: topic.summary,
+      images: [],
+    },
+  };
 }
 
 export default async function RamanujanTopicPage({ params }: { params: Promise<{ topicSlug: string }> }) {

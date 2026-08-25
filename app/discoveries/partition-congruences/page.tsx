@@ -16,7 +16,7 @@ export default function PartitionCongruencesPage() {
       <main className="detail-page">
         <article className="detail-article">
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/discoveries">Discoveries</a> / <a href="/discoveries?category=Partitions">Partitions</a> / <span>Partition Congruences</span>
+            <a href="/discoveries">Discoveries</a> / <a href="/discoveries/category/partition-theory">Partitions</a> / <span>Partition Congruences</span>
           </nav>
           <p className="detail-meta">Partitions | 1919</p>
           <h1>The Partition Congruences</h1>
@@ -80,8 +80,8 @@ export default function PartitionCongruencesPage() {
           </div>
           <div className="sidebar-box">
             <h2>Actions</h2>
-            <a href="/discoveries">Previous Discovery</a>
-            <a href="/discoveries">Next Discovery</a>
+            <a href="/discoveries/partition-generating-function">Previous Discovery</a>
+            <a href="/discoveries/higher-power-partition-congruences">Next Discovery</a>
             <SaveButton id="discovery:partition-congruences" label="The Partition Congruences" />
           </div>
         </aside>

@@ -5,8 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { categories, discoveries } from "../data/archive";
 import { DiscoveryCard } from "../shared/DiscoveryCard";
 
-const sourceFilters = ["All", "Source catalogue", "Published Papers", "Lost Notebook", "Hardy-Ramanujan"];
-const typeFilters = ["All", "theorem", "identity", "formula", "conjecture", "method", "function", "continued-fraction", "series", "approximation", "equation", "concept", "contribution-family"];
+const sourceFilters = ["All", ...Array.from(new Set(discoveries.map((item) => item.sourceType))).sort((a, b) => a.localeCompare(b))];
+const typeFilters = ["All", ...Array.from(new Set(discoveries.map((item) => item.resultType))).sort((a, b) => formatLabel(a).localeCompare(formatLabel(b)))];
 const sortOptions = [
   ["featured", "Featured"],
   ["year", "Year"],
@@ -140,7 +140,7 @@ export function DiscoveryArchive({ initialCategorySlug }: { initialCategorySlug?
         {chips.length ? (
           <div className="active-filter-chips" aria-label="Active discovery filters">
             {chips.map((chip) => (
-              <button key={chip.key} type="button" onClick={chip.onRemove}>
+              <button key={chip.key} type="button" onClick={chip.onRemove} aria-label={`Remove ${chip.label} filter`}>
                 {chip.label}<span aria-hidden="true">x</span>
               </button>
             ))}
@@ -199,7 +199,7 @@ export function DiscoveryArchive({ initialCategorySlug }: { initialCategorySlug?
               <section className="featured-discoveries" aria-label="Featured discoveries">
                 <div className="section-kicker">
                   <p>Featured discoveries</p>
-                  <span>Start with the archive's most connected entries.</span>
+                  <span>Start with the archive&apos;s most connected entries.</span>
                 </div>
                 <div className="featured-discovery-strip">
                   {featuredResults.map((discovery) => (

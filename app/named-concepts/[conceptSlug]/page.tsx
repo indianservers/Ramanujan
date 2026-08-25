@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDiscovery, getFormula, getNamedConcept, namedConcepts } from "../../data/archive";
 import { BlockMath } from "../../shared/Math";
@@ -6,6 +7,26 @@ import { SiteHeader } from "../../shared/SiteHeader";
 
 export function generateStaticParams() {
   return namedConcepts.map((concept) => ({ conceptSlug: concept.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ conceptSlug: string }> }): Promise<Metadata> {
+  const { conceptSlug } = await params;
+  const concept = getNamedConcept(conceptSlug);
+  if (!concept) return {};
+  return {
+    title: concept.title,
+    description: concept.summary,
+    openGraph: {
+      title: `${concept.title} | The Ramanujan Universe`,
+      description: concept.summary,
+      images: [],
+    },
+    twitter: {
+      title: `${concept.title} | The Ramanujan Universe`,
+      description: concept.summary,
+      images: [],
+    },
+  };
 }
 
 export default async function NamedConceptPage({ params }: { params: Promise<{ conceptSlug: string }> }) {
