@@ -12,11 +12,14 @@
     "test": "npm run build && npx tsx --test tests/data-integrity.test.ts tests/site-quality.test.ts && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "sitemap": "npx tsx scripts/generate-sitemap.ts",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "build:vercel": "next build",
+    "start:vercel": "next start"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
     "katex": "^0.18.4",
+    "next": "^16.3.8",
     "react": "19.2.6",
     "react-dom": "19.2.6"
   },

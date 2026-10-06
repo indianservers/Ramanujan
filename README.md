@@ -98,3 +98,10 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## Vercel deployment
+
+Vercel uses vercel.json to select the Next.js framework, run npm run build:vercel, and deploy .next. Keep the project Root Directory set to this repository root. The existing Vinext commands remain available for local development and Cloudflare builds.
+
+After pushing these files, redeploy the Vercel project. Remove any dashboard Build Command override that still runs vinext build.
+
